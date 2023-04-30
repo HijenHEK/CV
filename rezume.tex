@@ -1,0 +1,352 @@
+%-------------------------
+% Rezume, a latex resume template for Développeurs
+% Author : Nanu Panchamurthy
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+
+% Hope this resume template helps you land an awesome job. If you found this helpful, please consider starring the github repo here, .
+%-------------------------
+
+
+
+%------------PACKAGES----------------
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{verbatim} % reimplements the "verbatim" and "verbatim*" environments
+
+\usepackage{titlesec} % provides an interface to sectioning commands i.e. custom elements
+
+\usepackage{color} % provides both foreground and background color management
+
+\usepackage{enumitem} % provides control over enumerate, itemize and description
+
+\usepackage{fancyhdr} % provides extensive facilities for constructing headers, footers and also controlling their use
+
+\usepackage{tabularx} % defines an environment tabularx, extension of "tabular" with an extra designator x, paragraph like column whose width automatically expands to fill the width of the environment
+
+\usepackage{latexsym} % provides mathematical symbols
+
+\usepackage{marvosym} % provides martin vogel's symbol font which contains various symbols
+
+\usepackage[empty]{fullpage} % sets margins to one inch and removes headers, footers etc..
+
+\usepackage[hidelinks]{hyperref} % removes color and shadow of hyperlinks
+
+\usepackage[normalem]{ulem} % provides "\ul" (uline) command which will break at line breaks
+
+\usepackage[english]{babel} % provides culturally determined typographical rules for wide range of languages
+%-----------------------------------------
+
+\input glyphtounicode % converts glyph names to unicode
+\pdfgentounicode=1 % ensures pdfs generated are ats readable
+
+%----------FONT OPTIONS-------------------
+\usepackage[default]{sourcesanspro} % uses the font source sans pro
+\urlstyle{same} % changes url font from default urlfont to font being used by the document
+%-----------------------------------------
+
+
+%----------MARGIN OPTIONS-----------------
+\pagestyle{fancy} % set page style to one configured by fancyhdr
+\fancyhf{} % clear all header and footer fields
+
+\renewcommand{\headrulewidth}{0in} % sets thickness of linerule under header to zero
+\renewcommand{\footrulewidth}{0in} % sets thickness of linerule over footer to zero
+
+\setlength{\tabcolsep}{0in} % sets thickness of column separator in tables to zero
+
+% origin of the document is one inch from the top and from and the left
+% oddsidemargin and evensidemargin both refer to the left margin
+% right margin is indirectly set using oddsidemargin
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\topmargin}{-0.5in}
+
+\addtolength{\textwidth}{1.0in} % sets width of text area in the page to one inch
+\addtolength{\textheight}{1.0in} % sets height of text area in the page to one inch
+
+\raggedbottom{} % makes all pages the height of current page, no extra vertical space added
+\raggedright{} % makes all pages the width of current page, no extra horizontal space added
+%------------------------------------------
+
+
+%--------SECTIONING COMMANDS---------
+% \titleformat{<command>}
+%   [<shape>]{<format>}{<label>}{<sep>}
+%     {<before-code>}[<after-code>]
+
+% command is the sectioning command to be redefined
+% shape is the style of the font; scshape stands for small caps style
+% format is the format to be applied to whole title- label and text; absent here
+% label defines the label
+% sep is the horizontal separation between label and title body
+% before-code is the code to be executed before
+% after-code is the code to be executed after
+
+\titleformat{\section}
+  {\scshape\large}{}
+    {0em}{\color{blue}}[\color{black}\titlerule\vspace{0pt}]
+%-------------------------------------
+
+
+%--------REDEFINITIONS----------------
+% redefines the style of the bullet point
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% redefines the underline depth to 2pt
+\renewcommand{\ULdepth}{2pt}
+%-------------------------------------
+
+
+%--------CUSTOM COMMANDS--------------
+%\vspace{} defines a vertical space of given size, modifying this in custom commands can help stretch or shrink resume to remove or add content
+
+% resumeItem renders a bullet point
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+% commands to start and end itemization of resumeItem, rightmargin set to 0.11in to avoid the overflow of resumetItem beyond whatever resumeItemHeading is being used
+\newcommand{\resumeItemListStart}{\begin{itemize}[rightmargin=0.11in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% resumeSectionType renders a bolded type to be used under a section, used as skill type here, middle element is used to keep ":"s in the same vertical line
+\newcommand{\resumeSectionType}[3]{
+  \item\begin{tabular*}{0.96\textwidth}[t]{
+    p{0.15\linewidth}p{0.02\linewidth}p{0.81\linewidth}
+  }
+    \textbf{#1} & #2 & #3
+  \end{tabular*}\vspace{-2pt}
+}
+
+% resumeTrioHeading renders three elements in three columns with second element being italicized and first element bolded, can be used for Projets with three elements
+\newcommand{\resumeTrioHeading}[3]{
+  \item\small{
+    \begin{tabular*}{0.96\textwidth}[t]{
+      l@{\extracolsep{\fill}}c@{\extracolsep{\fill}}r
+    }
+      \textbf{#1} & \textit{#2} & #3
+    \end{tabular*}
+  }
+}
+
+% resumeQuadHeading renders four elements in a two columns with the second row being italicized and first element of first row bolded, can be used for experience and Projets with four elements
+\newcommand{\resumeQuadHeading}[4]{
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}
+}
+
+% resumeQuadHeading renders four elements in a two columns with the second row being italicized and first element of first row bolded, can be used for experience and Projets with four elements
+
+
+% resumeQuadHeadingChild renders the second row of resumeQuadHeading, can be used for experience if different roles in the same company need to added
+\newcommand{\resumeQuadHeadingChild}[2]{
+  \item
+  \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{\small#1} & {\small#2} \\
+  \end{tabular*}
+}
+
+% commands to start and end itemization of resumeQuadHeading, lefmargin for left indent of 0.15in for resumeItems
+\newcommand{\resumeHeadingListStart}{
+  \begin{itemize}[leftmargin=0.15in, label={}]
+}
+\newcommand{\resumeHeadingListEnd}{\end{itemize}}
+%-------------------------------------------
+
+
+%__________________RESUME____________________
+% You can rearrange sections in any order you may prefer
+\begin{document}
+
+%-----------CONTACT DETAILS------------------
+% Make sure all the details are correct, you can add more links in the first row of second column if needed
+
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\Huge Hijen EL Khalifi \vspace{2pt}} & % row = 1, col = 1
+  Adresse: Ariana, Tunisie \\ % row = 1, col = 2
+  \href{https://linkedin.com/in/hijenhek}{\uline{LinkedIn}} $|$ % row = 2, col = 1
+  \href{https://github.com/hijenhek}{\uline{GitHub}} $|$ % row = 2, col = 1
+  \href{https://stackoverflow.com/users/15861862/hijenhek}{\uline{StackoverFlow}} & % row = 2, col = 1
+  Email: \href{mailto:hijenhek@gmail.com}{\uline{hijenhek@gmail.com}} $|$ % row = 2, col = 2
+  Mobile: 94540141 \\ % row = 2, col = 2
+\end{tabular*}
+%--------------------------------------------
+
+
+%-----------SUMMARY--------------------------
+% Keep this short, simple and straigth to point
+
+\section{Ingénieur en Génie Logiciel | Développeur Web }
+\small{
+Je suis un ingénieur en génie logiciel spécialisé en développement web et les technologies du cloud avec \textbf{4 ans d'expérience} en conception, développement et déploiement des applications web en utilisant des frameworks populaire comme \textbf{Laravel, et Nodejs}. \\
+Je possède également des expériences pratiques avec \textbf{Linux}, \textbf{REST APIs} et \textbf{l'écosystème de AWS}.
+}
+%--------------------------------------------
+
+
+%--------------SKILLS------------------------
+% Add or remove resumeSectionTypes according to your needs
+
+\section{Compétence Technique}
+  \resumeHeadingListStart{}
+    \resumeSectionType{Langages}{:}{PHP, Python, Javascript, Shell Commands.}
+    \resumeSectionType{Framework}{:}{Laravel, Vuejs, Node.js.}
+    \resumeSectionType{Base de donné}{:}{Mysql, PostgreSQL, DynamoDB.}
+    \resumeSectionType{Outils dev}{:}{Visual Studio Code, Git, Bitbucket, Github.}
+    \resumeSectionType{DevOps} {:}{AWS, Docker, Kubernetes, CI/CD Pipeline.}
+  \resumeHeadingListEnd{}
+%--------------------------------------------
+
+
+%-----------EXPERIENCE-----------------------
+% Distill all your talking points to small bullet points which follow the pattern "challenge-action-result" for maximum efficiency. Try to quantify (use numbers) your points whenver possible, highlist words of importance
+
+\section{Expérience}
+\resumeHeadingListStart{}
+  \resumeQuadHeading{Développeur Lead Backend }{Jun 2022 -- Présent}
+  {\href{https://360medlink.com/}{360Medlink} }{Hybride -- Ariana, Tunisie}
+    \resumeItemListStart{}
+      \resumeItem{Contribuer à la conception d'une nouvelle \textbf{application Saas multi tenantes} et Gérer son développement backend.}
+      \resumeItem{Utiliser Jira et les solutions du Atlassian pour gérer les taches entre les membres d'équipe en adoptant la méthodologie \textbf{Scrum agile} .} \\
+      \resumeItem{Contribuer au Développement des API en adoptant \textbf{la méthodologies TDD}.}
+      \resumeItem{Debugger les codes et résoudre les erreurs des différentes applications back-ends.}
+
+      \medskip
+          \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{Technologies :} \textit{Laravel, Mysql, AWS, Jira.} \\
+
+            \textbf{Projets :} \textit{ 
+                \href{https://360medlink.com/digital-therapeuticsdtx/}{PersistRx}, 
+                \href{https://360medlink.com/clinical-trials/\#clinikly}{Clinikly},
+                \href{https://transcendfl.com}{Transcend}.} \\
+                
+            \textbf{Clients :} \textit{Pierre Fabre, Bristol-Meyers Squibb, Grunenthal.} \\
+          \end{tabular*}
+        
+    \resumeItemListEnd{}
+
+
+
+  \resumeQuadHeading{Développeur Full Stack}{Apr 2021 -- Juin 2022}
+  {\href{https://iwatch.tn/}{IWatch Org} }{Hybride -- Tunis, Tunisie}
+    \resumeItemListStart{}
+      \resumeItem{Développement des applications et maintenance des sites web du IWatch Org.}
+      \resumeItem{Gestion des hébergements et des serveurs de IWatch Org .}
+      \resumeItem{Création et gestion d'un compte \textbf{d'organisation sur Github}.}
+
+            \medskip
+          \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{Technologies :} \textit{Laravel, WordPress, Mysql, Cpanel, WHM, Bootstrap, Vuejs.} \\
+
+            \textbf{Projets :} \textit{ 
+                \href{https://pinvestigate.tn/}{Pinvestigate.tn}, 
+                \href{https://meters.tn/}{Meters.tn},
+                \href{https://icheck.tn}{Icheck.tn}.} \\
+                \textbf{Clients :} \textit{Commission européenne,  des NGO Tunisienne,  Municipalités tunisiennes nouvellement fondées,} \\ \textit{Initiative de partenariat des États-Unis au Moyen-Orient} \\
+
+          \end{tabular*}
+    \resumeItemListEnd{}
+
+\resumeQuadHeading{Développeur Cobol | Consultant HRAccess}{Jul 2019 -- Fev 2020}
+  {\href{hhttps://www.soprahr.com/}{SopraHR} }{Sur Site -- Tunis, Tunisie}
+    \resumeItemListStart{}
+      \resumeItem{Analyse des besoins du client, Création et Mise à jour des fonctionnalités sur le produit HR Access.}
+      \resumeItem{Création des documentations pour guider le client lors de l'utilisation du produit et expliquer schématiquement les nouvelles fonctionnalités.}
+      \resumeItem{Travailler dans une équipe de 5 personnes pour bien debugger les erreurs et les résoudre.}
+
+            \medskip
+          \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{Technologies :} \textit{Cobol, JavaScript, OracleDB.} \\
+            \textbf{Projets :} \textit{\href{https://www.soprahr.com/}{HR Access.}} \\ 
+                \textbf{Clients :} \textit{Total, Attijari Bank, Sagecom.} \\
+
+          \end{tabular*}
+    \resumeItemListEnd{}
+
+\newpage
+\resumeQuadHeading{Stagiaire : Développeur Full Stack  (PFE)}{Fev 2019 -– Mai 2019}
+    {\href{hhttps://www.etap.tn/}{ETAP}}{Hybride -- Ariana, Tunisie}
+    \resumeItemListStart{}
+      \resumeItem{Étude détaillé du Laravel et vuejs.},
+      \resumeItem{Conception et développement d'une application de gestion des projets.}
+
+            \medskip
+          \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{Technologies :} \textit{Laravel, Vuejs, Mysql.} \\
+                \textbf{Client :} \textit{ETAP.} \\
+
+          \end{tabular*}
+    \resumeItemListEnd{}
+
+
+\resumeQuadHeading{Stagiaire : Java Développeur}{Juin 2018 –- Août 2018}
+    {\href{hhttps://www.etap.tn/}{ETAP}}{Sur Site -- Ariana, Tunisie}
+    \resumeItemListStart{}
+      \resumeItem{Étude détaillé du Java et MySQL.}
+      \resumeItem{Développement d'une application de gestion des stocks avec Java (JDS).}
+
+            \medskip
+          \begin{tabular*}{0.96\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{Technologies :} \textit{Java, JDS, Jdbc, Mysql.} \\
+                \textbf{Client :} \textit{ETAP.} \\
+
+          \end{tabular*}
+    \resumeItemListEnd{}
+
+%---------------------------------------------
+
+
+%-----------EDUCATION-------------------------
+% Mention your CGPA, if its good, in the first row of second column
+
+\section{Formations}
+  \resumeHeadingListStart{}
+    \resumeQuadHeading{Université Sesame}{Ariana, Tunisie}
+    {Étude Ingénieur en génie logicielle .}{Sept 2019 – Présent}
+
+    \resumeQuadHeading{ISTIC}{Borj Cedria, Ben Arous, Tunisie}
+    {Licence en Science Informatique.}{Sept 2016 – May 2019}
+        
+    \resumeQuadHeading{IPEIN}{Nabeul, Tunisie}
+    {Études préparatoires d'ingénieur.}{Sept 2014 - Juin 2016}
+
+    \resumeQuadHeading{Lycée Secondaire Lessouda}{Sidi Bouzid, Tunisie}
+    {Baccalauréat en Mathématique : mention très bien.}{2014}
+  \resumeHeadingListEnd{}
+%---------------------------------------------
+
+
+%-----------Projets--------------------------
+% Use resumeQuadHeading if four elements are feasible (ex: demo video link), else use resumeTrioHeading. Keep the bullet points simple and concise and try to cover wide variety of skills you have used to build these Projets
+
+\section{Projets}
+  \resumeHeadingListStart{}
+    \resumeTrioHeading{\href{https://project1.com}{Laravel Vue Dashboard \textsc{2020}}}{Laravel, Vuejs, Tailwind, Mysql}{\href{https://github.com/HijenHEK/laravel-vue-sanctum-spa}{\uline{Source Code}}}
+      \resumeItemListStart{}
+        \resumeItem{Développement d'une dashboard Laravel/vue js SPA et partagé comme template.}
+        \resumeItem{le Style utilisé est le même que le package laravel/ui mais avec Tailwind .}
+      \resumeItemListEnd{}
+
+      \resumeTrioHeading{Gymania \textsc{2020}}{Laravel, Vuejs, Mysql}{\href{https://github.com/HijenHEK/gymania}{\uline{Source Code}}}
+      \resumeItemListStart{}
+        \resumeItem{Développement d'une application de gestion des salle de sport.}
+        \resumeItem{Développé avec vuejs et websocket pour mettre a jour les page dynamiquement.}
+      \resumeItemListEnd{}
+  \resumeHeadingListEnd{}
+%--------------------------------------------
+
+
+%----------------OTHERS----------------------
+% You can add your acheivements, accolades, certifications etc. here.
+
+\section{Certifications}
+  \resumeItemListStart{}
+    \resumeItem{\href{https://www.credly.com/badges/89c72af7-5085-4fd9-8828-b404e7b414c8/linked_in_profile}{\uline{IT Specialist - Software Développeur}.}}\\
+    \resumeItem{\uline{TOEIC Listening et Reading Test (B2)}.}
+  \resumeItemListEnd{}
+%--------------------------------------------
+
+\end{document}
